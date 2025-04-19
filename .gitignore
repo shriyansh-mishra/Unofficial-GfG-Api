@@ -5,3 +5,4 @@ utils.py
 .env
 __pycache__/
 steps.txt
+.vercel
