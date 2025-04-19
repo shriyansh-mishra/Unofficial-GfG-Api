@@ -5,3 +5,4 @@ gunicorn==23.0.0
 requests==2.31.0
 trafilatura==1.6.1
 werkzeug==2.3.7
+dotenv
