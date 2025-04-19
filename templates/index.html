@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeeksforGeeks Profile API</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-code-slash"></i> GfG Profile API
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/docs">API Docs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/shriyansh-mishra" target="_blank">GitHub</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-5">
+                    <h1 class="display-4">GeeksforGeeks Profile API</h1>
+                    <p class="lead">Extract profile information from GeeksforGeeks user dashboards</p>
+                </div>
+
+                <div class="card bg-dark shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title">Try the API</h2>
+                        <p class="card-text">Enter a GeeksforGeeks username to retrieve their profile information:</p>
+
+                        <form id="profile-form" class="form-container">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">GeeksforGeeks Username</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                    <input type="text" class="form-control" id="username" name="username"
+                                        placeholder="e.g., geek123" required>
+                                    <button type="submit" class="btn btn-primary">Fetch Profile</button>
+                                </div>
+                                <div class="form-text">Enter a valid GeeksforGeeks username</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Select Endpoint</label>
+                                <select class="form-select" id="endpoint-select">
+                                    <option value="profile">Complete Profile</option>
+                                    <option value="basic-info">Basic Info</option>
+                                    <option value="coding-stats">Coding Stats</option>
+                                    <option value="submission-data">Submission Data</option>
+                                    <option value="difficulty-stats">Difficulty Stats</option>
+                                    <option value="institution-languages">Institution & Languages</option>
+                                    <option value="streak">Streak Data</option>
+                                </select>
+                            </div>
+                        </form>
+
+                        <div id="loading-spinner" class="loading-spinner">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2">Fetching profile data...</p>
+                        </div>
+
+                        <div id="result-container" class="result-container" style="display: none;">
+                            <h3>API Response</h3>
+                            <pre id="result-json" class="response-example"></pre>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light mt-5 py-4">
+        <div class="container text-center">
+            <p>GeeksforGeeks Profile API-shriyansh &copy; 2025</p>
+            <p class="small">This is an unofficial tool and is not affiliated with GeeksforGeeks</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const profileForm = document.getElementById('profile-form');
+            const resultContainer = document.getElementById('result-container');
+            const resultJson = document.getElementById('result-json');
+            const endpointSelect = document.getElementById('endpoint-select');
+            const loadingSpinner = document.getElementById('loading-spinner');
+
+            profileForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const username = document.getElementById('username').value.trim();
+                if (!username) {
+                    alert('Please enter a username');
+                    return;
+                }
+
+                const endpoint = endpointSelect.value;
+
+                // Show loading spinner
+                loadingSpinner.style.display = 'block';
+                resultContainer.style.display = 'none';
+
+                try {
+                    const response = await fetch(`/api/${endpoint}?username=${encodeURIComponent(username)}`);
+                    const data = await response.json();
+
+                    // Display the result
+                    resultJson.textContent = JSON.stringify(data, null, 2);
+                    resultContainer.style.display = 'block';
+                } catch (error) {
+                    resultJson.textContent = JSON.stringify({ error: 'Failed to fetch data. Please try again.' }, null, 2);
+                    resultContainer.style.display = 'block';
+                    console.error('Error:', error);
+                } finally {
+                    // Hide loading spinner
+                    loadingSpinner.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

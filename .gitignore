@@ -1,0 +1,7 @@
+extract_gfg_api.py
+extract_gfg_nextjs.py
+inspect_gfg.py
+utils.py
+.env
+__pycache__/
+steps.txt

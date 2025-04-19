@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - GeeksforGeeks Profile API</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-code-slash"></i> GfG Profile ApI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/docs">API Docs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com" target="_blank">GitHub</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h1 class="display-5 mb-4">API Documentation</h1>
+                <p class="lead">The GeeksforGeeks Profile API allows you to extract profile information and
+                    coding statistics from GeeksforGeeks user dashboards.</p>
+
+                <div class="card bg-dark shadow-sm mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title">Base URL</h2>
+                        <p class="endpoint-path">https://your-domain.com/api</p>
+                        <p>All API endpoints are relative to this base URL.</p>
+                    </div>
+                </div>
+
+                <div class="card bg-dark shadow-sm mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title">Authentication</h2>
+                        <p>This API does not require authentication.</p>
+                        <p class="text-warning"><i class="bi bi-exclamation-triangle"></i> Rate limiting is applied to
+                            prevent abuse. Maximum 10 requests per minute per IP address.</p>
+                    </div>
+                </div>
+
+                <h2 class="mt-5 mb-4">API Endpoints</h2>
+
+                <!-- Complete Profile Endpoint -->
+                <div class="api-endpoint">
+                    <h3><span class="endpoint-method">GET</span> /profile</h3>
+                    <p>Get complete profile information from a GeeksforGeeks user dashboard.</p>
+
+                    <h4>Request Parameters</h4>
+                    <ul>
+                        <li><span class="param-name">username</span> (required) - The GeeksforGeeks username</li>
+                    </ul>
+
+                    <h4>Example Request</h4>
+                    <p class="endpoint-path">GET /api/profile?username=geek123</p>
+
+                    <h4>Example Response</h4>
+                    <pre class="response-example">{
+  "username": "geek123",
+  "fullname": "John Doe",
+  "qualification": "Computer Science Graduate",
+  "joined_date": "2024-01-15 12:34:56",
+  "coding_score": "350",
+  "problems_solved": "75",
+  "contest_rating": "1532",
+  "overall_rank": "2345",
+  "total_submissions": "120",
+  "monthly_problems_solved": "12",
+  "last_submission": {
+    "problem": "Reverse a linked list",
+    "slug": "reverse-linked-list",
+    "language": "python"
+  },
+  "solved_by_difficulty": {
+    "basic": "20",
+    "easy": "30",
+    "medium": "20",
+    "hard": "5"
+  },
+  "institution": "Stanford University",
+  "languages_used": ["C++", "Python", "Java"],
+  "current_streak": "15",
+  "longest_streak": "30",
+  "monthly_score": "240"
+}</pre>
+                </div>
+
+                <!-- Basic Info Endpoint -->
+                <div class="api-endpoint">
+                    <h3><span class="endpoint-method">GET</span> /basic-info</h3>
+                    <p>Get basic profile information like username, fullname, and qualification.</p>
+
+                    <h4>Request Parameters</h4>
+                    <ul>
+                        <li><span class="param-name">username</span> (required) - The GeeksforGeeks username</li>
+                    </ul>
+
+                    <h4>Example Request</h4>
+                    <p class="endpoint-path">GET /api/basic-info?username=geek123</p>
+
+                    <h4>Example Response</h4>
+                    <pre class="response-example">{
+  "username": "geek123",
+  "fullname": "John Doe",
+  "qualification": "Computer Science Graduate",
+  "joined_date": "2024-01-15 12:34:56"
+}</pre>
+                </div>
+
+                <!-- Coding Stats Endpoint -->
+                <div class="api-endpoint">
+                    <h3><span class="endpoint-method">GET</span> /coding-stats</h3>
+                    <p>Get coding statistics like score, problems solved, contest rating.</p>
+
+                    <h4>Request Parameters</h4>
+                    <ul>
+                        <li><span class="param-name">username</span> (required) - The GeeksforGeeks username</li>
+                    </ul>
+
+                    <h4>Example Request</h4>
+                    <p class="endpoint-path">GET /api/coding-stats?username=geek123</p>
+
+                    <h4>Example Response</h4>
+                    <pre class="response-example">{
+  "coding_score": "350",
+  "problems_solved": "75",
+  "contest_rating": "1532",
+  "overall_rank": "2345"
+}</pre>
+                </div>
+
+                <!-- Submission Data Endpoint -->
+                <div class="api-endpoint">
+                    <h3><span class="endpoint-method">GET</span> /submission-data</h3>
+                    <p>Get submission data like total submissions, monthly problems solved, last submission.</p>
+
+                    <h4>Request Parameters</h4>
+                    <ul>
+                        <li><span class="param-name">username</span> (required) - The GeeksforGeeks username</li>
+                    </ul>
+
+                    <h4>Example Request</h4>
+                    <p class="endpoint-path">GET /api/submission-data?username=geek123</p>
+
+                    <h4>Example Response</h4>
+                    <pre class="response-example">{
+  "total_submissions": "120",
+  "monthly_problems_solved": "12",
+  "problems_by_difficulty": {
+    "basic": [
+      {
+        "name": "Peak element",
+        "url": "https://www.geeksforgeeks.org/problems/peak-element/0"
+      },
+      {
+        "name": "Array Search",
+        "url": "https://www.geeksforgeeks.org/problems/search-an-element-in-an-array-1587115621/0"
+      }
+    ],
+    "easy": [
+      {
+        "name": "First n Fibonacci",
+        "url": "https://www.geeksforgeeks.org/problems/print-first-n-fibonacci-numbers1002/0"
+      },
+      {
+        "name": "Sum of Natural Numbers",
+        "url": "https://www.geeksforgeeks.org/problems/sum-of-series2811/0"
+      }
+    ],
+    "medium": [
+      {
+        "name": "Largest Element in Array",
+        "url": "https://www.geeksforgeeks.org/problems/largest-element-in-array4009/0"
+      }
+    ],
+    "hard": []
+  }
+}</pre>
+                </div>
+
+                <!-- Difficulty Stats Endpoint -->
+                <div class="api-endpoint">
+                    <h3><span class="endpoint-method">GET</span> /difficulty-stats</h3>
+                    <p>Get solved stats by difficulty (easy, medium, hard, basic).</p>
+
+                    <h4>Request Parameters</h4>
+                    <ul>
+                        <li><span class="param-name">username</span> (required) - The GeeksforGeeks username</li>
+                    </ul>
+
+                    <h4>Example Request</h4>
+                    <p class="endpoint-path">GET /api/difficulty-stats?username=geek123</p>
+
+                    <h4>Example Response</h4>
+                    <pre class="response-example">{
+  "solved_by_difficulty": {
+    "basic": "20",
+    "easy": "30",
+    "medium": "20",
+    "hard": "5"
+  }
+}</pre>
+                </div>
+
+                <!-- Institution Languages Endpoint -->
+                <div class="api-endpoint">
+                    <h3><span class="endpoint-method">GET</span> /institution-languages</h3>
+                    <p>Get institution and languages used.</p>
+
+                    <h4>Request Parameters</h4>
+                    <ul>
+                        <li><span class="param-name">username</span> (required) - The GeeksforGeeks username</li>
+                    </ul>
+
+                    <h4>Example Request</h4>
+                    <p class="endpoint-path">GET /api/institution-languages?username=geek123</p>
+
+                    <h4>Example Response</h4>
+                    <pre class="response-example">{
+  "institution": "Stanford University",
+  "languages_used": ["C++", "Python", "Java"]
+}</pre>
+                </div>
+
+                <!-- Streak Endpoint -->
+                <div class="api-endpoint">
+                    <h3><span class="endpoint-method">GET</span> /streak</h3>
+                    <p>Get user's streak and monthly score.</p>
+
+                    <h4>Request Parameters</h4>
+                    <ul>
+                        <li><span class="param-name">username</span> (required) - The GeeksforGeeks username</li>
+                    </ul>
+
+                    <h4>Example Request</h4>
+                    <p class="endpoint-path">GET /api/streak?username=geek123</p>
+
+                    <h4>Example Response</h4>
+                    <pre class="response-example">{
+  "current_streak": "15",
+  "longest_streak": "30",
+  "monthly_score": "240"
+}</pre>
+                </div>
+
+                <div class="card bg-dark shadow-sm mt-5">
+                    <div class="card-body">
+                        <h2 class="card-title">Error Responses</h2>
+                        <p>The API uses standard HTTP status codes to indicate the success or failure of a request.</p>
+
+                        <h4>Common Error Codes</h4>
+                        <ul>
+                            <li><strong>400 Bad Request</strong> - Invalid username parameter</li>
+                            <li><strong>404 Not Found</strong> - Profile not found</li>
+                            <li><strong>429 Too Many Requests</strong> - Rate limit exceeded</li>
+                            <li><strong>500 Internal Server Error</strong> - Server error while processing the request
+                            </li>
+                        </ul>
+
+                        <h4>Error Response Format</h4>
+                        <pre class="response-example">{
+  "error": "Error message explaining what went wrong"
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light mt-5 py-4">
+        <div class="container text-center">
+            <p>GeeksforGeeks Profile API-shriyansh &copy; 2025</p>
+            <p class="small">This is an unofficial tool and is not affiliated with GeeksforGeeks</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
