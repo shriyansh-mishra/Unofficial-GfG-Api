@@ -34,18 +34,7 @@ class GeeksforGeeksScraper:
         )
 
     def _get_profile_data(self, username):
-        """
-        Fetch the profile page and extract the Next.js data.
-
-        Args:
-            username (str): The GeeksforGeeks username
-
-        Returns:
-            dict: The extracted profile data from Next.js
-
-        Raises:
-            Exception: If the profile page couldn't be fetched or doesn't exist
-        """
+        
         url = f"{self.BASE_URL}{username}/"
         logger.debug(f"Fetching profile from URL: {url}")
 
