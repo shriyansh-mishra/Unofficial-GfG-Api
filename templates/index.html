@@ -7,7 +7,7 @@
     <title>GeeksforGeeks Profile API</title>
     <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <link rel="stylesheet" href="/static/custom.css">
 </head>
 
 <body>
@@ -99,49 +99,9 @@
             <p class="small">This is an unofficial tool and is not affiliated with GeeksforGeeks</p>
         </div>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const profileForm = document.getElementById('profile-form');
-            const resultContainer = document.getElementById('result-container');
-            const resultJson = document.getElementById('result-json');
-            const endpointSelect = document.getElementById('endpoint-select');
-            const loadingSpinner = document.getElementById('loading-spinner');
-
-            profileForm.addEventListener('submit', async function (e) {
-                e.preventDefault();
-
-                const username = document.getElementById('username').value.trim();
-                if (!username) {
-                    alert('Please enter a username');
-                    return;
-                }
-
-                const endpoint = endpointSelect.value;
-
-                // Show loading spinner
-                loadingSpinner.style.display = 'block';
-                resultContainer.style.display = 'none';
-
-                try {
-                    const response = await fetch(`/api/${endpoint}?username=${encodeURIComponent(username)}`);
-                    const data = await response.json();
-
-                    // Display the result
-                    resultJson.textContent = JSON.stringify(data, null, 2);
-                    resultContainer.style.display = 'block';
-                } catch (error) {
-                    resultJson.textContent = JSON.stringify({ error: 'Failed to fetch data. Please try again.' }, null, 2);
-                    resultContainer.style.display = 'block';
-                    console.error('Error:', error);
-                } finally {
-                    // Hide loading spinner
-                    loadingSpinner.style.display = 'none';
-                }
-            });
-        });
-    </script>
+    
+    <script src="/static/index.js"></script>
 </body>
 
 </html>
