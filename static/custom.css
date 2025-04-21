@@ -1,0 +1,60 @@
+
+.api-endpoint {
+    border-left: 4px solid var(--bs-info);
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+.endpoint-path {
+    font-family: monospace;
+    background-color: var(--bs-dark);
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: var(--bs-light);
+}
+
+.param-name {
+    font-weight: bold;
+    color: var(--bs-primary);
+}
+
+.response-example {
+    background-color: var(--bs-dark);
+    color: var(--bs-light);
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: monospace;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.result-container {
+    background-color: var(--bs-dark);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.api-key {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.features-list li {
+    margin-bottom: 10px;
+}
+
+.endpoint-method {
+    font-weight: bold;
+    color: var(--bs-success);
+}
+
+.loading-spinner {
+    display: none;
+    text-align: center;
+    margin: 20px 0;
+}
