@@ -53,7 +53,6 @@ def is_rate_limited(ip_address):
     
     if current_time % 300 < 1:  
         cleanup_rate_limit_storage()
-    
     return False
 
 def cleanup_rate_limit_storage():
