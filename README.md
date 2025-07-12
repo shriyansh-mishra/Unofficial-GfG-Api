@@ -1,1 +1,1 @@
-"#Unofficial-GfG-Api!"
+"Unofficial-GfG-Api!"
